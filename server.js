@@ -41,5 +41,5 @@ app.post('/add-weather-data', function (req, res) {
     projectData.date = req.body.date;
     projectData.feelings = req.body.feelings;
 
-    res.send(projectData);
+    res.send({message: 'Post has been received..'});
 });
