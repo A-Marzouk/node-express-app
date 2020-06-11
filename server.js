@@ -30,3 +30,16 @@ function listening() {
 }
 
 // routes:
+
+app.get('/get-project-data', function(req,res){
+    res.send(projectData);
+});
+
+app.post('/add-weather-data', function (req, res) {
+    // add a new entry to projectData object.
+    projectData.temperature = req.body.temperature;
+    projectData.date = req.body.date;
+    projectData.feelings = req.body.feelings;
+
+    res.send(projectData);
+});
