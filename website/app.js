@@ -27,27 +27,30 @@ const createWeatherURL = () => {
 
 // listen to user  button click:
 document.getElementById('generate').addEventListener('click', () => {
+
     zipCode = document.getElementById('zip').value;
     enteredFeelings = document.getElementById('feelings').value;
 
     getWeatherDataByZipCode(createWeatherURL())
         .then((weatherData) => {
             let temp = weatherData.main.temp;
-            postWeatherData('/add-weather-data',{
-                temperature : temp,
-                date : newDate,
+
+            postWeatherData('/add-weather-data', {
+                temperature: temp,
+                date: newDate,
                 feelings: enteredFeelings
-            }).then( () => {
-                getLastEntry()
-                    .then( (projectData) => {
-                        updateUI(projectData);
+            }).then(() => {
+                getLastEntry().then((projectData) => {
+                    updateUI(projectData);
                 });
             });
         });
 })
 
 
-// Fetch data from the API
+// Main functions:
+
+// Fetch weather data from the API
 const getWeatherDataByZipCode = async (url = '') => {
     const response = await fetch(url);
 
@@ -86,13 +89,13 @@ const postWeatherData = async (url = '', data = {}) => {
     }
 };
 
-// get entry:
+// get last entry:
 const getLastEntry = async () => {
     const response = await fetch('/get-project-data');
 
     try {
         const projectData = await response.json();
-        return projectData ;
+        return projectData;
     } catch (e) {
         console.log('getLastEntery: ' + e);
         errorFeedback.innerHTML = 'Error: ' + e.message;
@@ -102,8 +105,8 @@ const getLastEntry = async () => {
 // Update the UI with the entered data + data from the API:
 const updateUI = (data = {}) => {
     entryHolder.style.display = 'block';
-    dateDiv.innerHTML    = '<b>Date: </b>' + data.date;
-    tempDiv.innerHTML    = '<b>Temperature: </b>' + data.temperature;
+    dateDiv.innerHTML = '<b>Date: </b>' + data.date;
+    tempDiv.innerHTML = '<b>Temperature: </b>' + data.temperature;
     contentDiv.innerHTML = '<b>Feelings: </b>' + data.feelings;
 };
 
