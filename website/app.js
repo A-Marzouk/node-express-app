@@ -28,6 +28,7 @@ const createWeatherURL = () => {
 // listen to user  button click:
 document.getElementById('generate').addEventListener('click', () => {
 
+    errorFeedback.innerHTML = '';
     zipCode = document.getElementById('zip').value;
     enteredFeelings = document.getElementById('feelings').value;
 
@@ -61,7 +62,6 @@ const getWeatherDataByZipCode = async (url = '') => {
         }
         return weatherData;
     } catch (e) {
-        console.log('getWeatherDataByZipCode: ' + e);
         errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
@@ -84,7 +84,6 @@ const postWeatherData = async (url = '', data = {}) => {
         const response = await request.json();
         console.log(response);
     } catch (e) {
-        console.log('postWeatherData: ' + e);
         errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
@@ -97,7 +96,6 @@ const getLastEntry = async () => {
         const projectData = await response.json();
         return projectData;
     } catch (e) {
-        console.log('getLastEntery: ' + e);
         errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
