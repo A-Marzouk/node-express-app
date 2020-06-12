@@ -7,6 +7,7 @@ let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
 // URL parts
 const apiKey = '63051696b741ea5504c120b377927c37';
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+const tempUnit   = 'imperial'
 
 // user inputs:
 let zipCode = '';
@@ -21,7 +22,7 @@ const errorFeedback = document.getElementById('error-feedback');
 
 // helper functions:
 const createWeatherURL = () => {
-    let url = `${baseURL}?zip=${zipCode}&appid=${apiKey}`;
+    let url = `${baseURL}?zip=${zipCode}&appid=${apiKey}&units=${tempUnit}`;
     return url;
 };
 
