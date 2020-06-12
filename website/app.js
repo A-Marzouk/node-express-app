@@ -16,6 +16,8 @@ let enteredFeelings = '';
 const dateDiv = document.getElementById('date');
 const tempDiv = document.getElementById('temp');
 const contentDiv = document.getElementById('content');
+const entryHolder = document.getElementById('entryHolder');
+const errorFeedback = document.getElementById('error-feedback');
 
 // helper functions:
 const createWeatherURL = () => {
@@ -57,7 +59,7 @@ const getWeatherDataByZipCode = async (url = '') => {
         return weatherData;
     } catch (e) {
         console.log('getWeatherDataByZipCode: ' + e);
-        document.getElementById('error-feedback').innerHTML = 'Error: ' + e.message;
+        errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
 
@@ -80,7 +82,7 @@ const postWeatherData = async (url = '', data = {}) => {
         console.log(response);
     } catch (e) {
         console.log('postWeatherData: ' + e);
-        document.getElementById('error-feedback').innerHTML = 'Error: ' + e.message;
+        errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
 
@@ -93,15 +95,16 @@ const getLastEntry = async () => {
         return projectData ;
     } catch (e) {
         console.log('getLastEntery: ' + e);
-        document.getElementById('error-feedback').innerHTML = 'Error: ' + e.message;
+        errorFeedback.innerHTML = 'Error: ' + e.message;
     }
 };
 
 // Update the UI with the entered data + data from the API:
 const updateUI = (data = {}) => {
-    dateDiv.innerHTML = data.date;
-    tempDiv.innerHTML = data.temperature;
-    contentDiv.innerHTML = data.feelings;
+    entryHolder.style.display = 'block';
+    dateDiv.innerHTML    = '<b>Date: </b>' + data.date;
+    tempDiv.innerHTML    = '<b>Temperature: </b>' + data.temperature;
+    contentDiv.innerHTML = '<b>Feelings: </b>' + data.feelings;
 };
 
 

@@ -13,20 +13,28 @@
 <body>
 <div id="app">
     <div class="holder headline">
-        Weather Journal App
+        <h1>
+            Weather Journal App
+        </h1>
     </div>
-    <div class="holder zip">
+    <div class="input-group d-flex flex-column">
         <label for="zip">Enter Zipcode here</label>
-        <input type="text" id="zip" placeholder="enter zip code here">
+        <input type="text" id="zip" placeholder="enter zip code here" class="form-control">
     </div>
-    <div class="holder feel">
+    <div class="input-group d-flex flex-column">
         <label for="feelings">How are you feeling today?</label>
-        <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-        <button id="generate" type="submit"> Generate</button>
+        <textarea id="feelings" placeholder="Enter your feelings here" rows="9" cols="50" class="form-control"></textarea>
     </div>
-    <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="entryHolder">
+
+    <button id="generate" type="submit" class="btn btn-primary"> Generate</button>
+
+    <div class="holder entry" id="entryHolder">
+        <div class="title">
+           <h2>
+               Most Recent Entry
+           </h2>
+        </div>
+        <div>
             <div id="date"></div>
             <div id="temp"></div>
             <div id="content"></div>
